@@ -1,32 +1,68 @@
-# Prerequisites
-*.d
+#include <iostream>
+#include <string>
+#include <locale.h>
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+class Студент {
+private:
+    std::string имя;
+    int возраст;
+    float средний_балл;
 
-# Precompiled Headers
-*.gch
-*.pch
+public:
+    Студент(std::string имя, int возраст, float средний_балл) : имя(имя), возраст(возраст), средний_балл(средний_балл) {}
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+    void установить_имя(std::string имя) {
+        this->имя = имя;
+    }
 
-# Fortran module files
-*.mod
-*.smod
+    std::string получить_имя() {
+        return имя;
+    }
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+    void установить_возраст(int возраст) {
+        this->возраст = возраст;
+    }
 
-# Executables
-*.exe
-*.out
-*.app
+    int получить_возраст() {
+        return возраст;
+    }
+
+    void установить_средний_балл(float средний_балл) {
+        this->средний_балл = средний_балл;
+    }
+
+    float получить_средний_балл() {
+        return средний_балл;
+    }
+
+    void показать_инфо() {
+        std::cout << "Студент: " << имя << ", Возраст: " << возраст << ", Средний балл: " << средний_балл << std::endl;
+    }
+
+    std::string оценить_успеваемость() {
+        if (средний_балл > 8) {
+            return "Отлично";
+        }
+        else if (средний_балл >= 6 && средний_балл <= 8) {
+            return "Хорошо";
+        }
+        else {
+            return "Удовлетворительно";
+        }
+    }
+};
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+
+    Студент студент1("Алексей", 20, 9);
+    Студент студент2("Мария", 22, 7.5);
+
+    студент1.показать_инфо();
+    std::cout << "Оценка успеваемости: " << студент1.оценить_успеваемость() << std::endl;
+
+    студент2.показать_инфо();
+    std::cout << "Оценка успеваемости: " << студент2.оценить_успеваемость() << std::endl;
+
+    return 0;
+}
